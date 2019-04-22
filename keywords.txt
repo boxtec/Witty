@@ -1,0 +1,110 @@
+#######################################
+# Syntax Coloring Map 
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+TerSer			KEYWORD1
+moz			KEYWORD1
+uni			KEYWORD1
+diz			KEYWORD1
+cen			KEYWORD1
+mil			KEYWORD1
+dim			KEYWORD1
+Normal			KEYWORD1
+Spaces			KEYWORD1
+Zeros			KEYWORD1
+Compact			KEYWORD1
+zr    KEYWORD1
+zg    KEYWORD1
+zb    KEYWORD1
+status    KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+Af3Dig		KEYWORD2
+Af5Dig		KEYWORD2
+ApaClear		KEYWORD2
+ApaHead		KEYWORD2
+ApaHtoRGB		KEYWORD2
+ApaHue		KEYWORD2
+ApaLed		KEYWORD2
+ApaLogBlue		KEYWORD2
+ApaLogCyan		KEYWORD2
+ApaLogGreen		KEYWORD2
+ApaLogPink		KEYWORD2
+ApaLogRed		KEYWORD2
+ApaLogRGB		KEYWORD2
+ApaLogWhite		KEYWORD2
+ApaLogYellow		KEYWORD2
+ApaRainbow		KEYWORD2
+ApaRGB		KEYWORD2
+ApaS8		KEYWORD2
+ApaTail		KEYWORD2
+Bin16		KEYWORD2
+Bin8		KEYWORD2
+BinDec16		KEYWORD2
+BinDec8		KEYWORD2
+BinDec9999    KEYWORD2
+Car		KEYWORD2
+Clibyte		KEYWORD2
+CliErr		KEYWORD2
+Clignobyte		KEYWORD2
+Compte     KEYWORD2
+cntPush   KEYWORD2
+CR		KEYWORD2
+Dec16s		KEYWORD2
+Dec16u		KEYWORD2
+Dec8s		KEYWORD2
+Dec8u		KEYWORD2
+delMs		KEYWORD2
+DelMs		KEYWORD2
+Delus		KEYWORD2
+DoPfm		KEYWORD2
+Get   KEYWORD2
+GetPush   KEYWORD2
+Hex16		KEYWORD2
+Hex32		KEYWORD2
+Hex8		KEYWORD2
+ReadByte    KEYWORD2
+ReadByteAt    KEYWORD2
+ReadGy521		KEYWORD2
+ReadWord    KEYWORD2
+ReadWordAt    KEYWORD2
+SetupApa102		KEYWORD2
+SetupGy521		KEYWORD2
+SetupI2Ctwi		KEYWORD2
+SetupInter2		KEYWORD2
+SetupSerNum		KEYWORD2
+SetupTerSer		KEYWORD2
+SetupWitty		KEYWORD2
+TerBin8		KEYWORD2
+TerBinDec8    KEYWORD2
+TerCar		KEYWORD2
+TerConvNibble   KEYWORD2
+TerCR		KEYWORD2
+TerDec16		KEYWORD2
+TerDec16S		KEYWORD2
+TerDec8		KEYWORD2
+TerDec8S		KEYWORD2
+TerDec9999		KEYWORD2
+TerHex12		KEYWORD2
+TerHex16		KEYWORD2
+TerHex20		KEYWORD2
+TerHex32		KEYWORD2
+TerHex8		KEYWORD2
+TerTextconst		KEYWORD2
+Textconst		KEYWORD2
+Textlnconst		KEYWORD2
+TtBin8		KEYWORD2
+TwReadAck   KEYWORD2
+TwReadNack    KEYWORD2
+TwReStart		KEYWORD2
+TwStart		KEYWORD2
+TwStop		KEYWORD2
+TwWrite		KEYWORD2
+WriteByteAtbyte		KEYWORD2
+WriteBytebyte		KEYWORD2
+WriteWordAtbyte		KEYWORD2
