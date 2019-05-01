@@ -10,7 +10,7 @@ One of the first robot balancing acts seems to date from 2001 with Joe, develope
 Since 2012, integrated sensors have since facilitated implementation, and the number of projects has exploded, but the descriptions are of the type "kitchen rule". Few understand what it does and why it works, if it works.  
 Adjustment problems are always tricky, and mathematics is not very useful if the data is worthless.
 
-![joe1](docs/images/joe-bot1.png?raw=true "Joe balancing Bot") ![joe2](docs/images/joe-bot2.png?raw=true "Joe balancing Bot")
+![joe1](images/joe-bot1.png?raw=true "Joe balancing Bot") ![joe2](images/joe-bot2.png?raw=true "Joe balancing Bot")
 
 One can find theory with pretty formulas, there are libraries that apply these formulas in floating point. The problem is that a calculation can only give accurate results if the data is accurate and if one can act accurately.  
 Let's study in detail the components of a balancing robot and their behavior.  
@@ -22,14 +22,14 @@ In addition, the accelerometer measures both static and dynamic accelerations.
 You have to use a low-pass filter to get the gravity and a high-pass filter if one needs the dynamic acceleration.  
 Three-axis accelerometer as the Gy521/MPU-6050 provides gyro values x, y, z.  
 
-![witty](docs/images/wittybot1.png?raw=true "Witty Bot") ![gyro1](docs/images/gyro-axes.png?raw=true "Gyro Axes")
+![witty](images/wittybot1.png?raw=true "Witty Bot") ![gyro1](images/gyro-axes.png?raw=true "Gyro Axes")
 
 On the Witty, some values are more interesting to know. In the position of the picture, acceleration Y is close to -1G, Z close to zero. X will stay at zero on the usually flat test surface but the roll value is interesting to know. Play with Demo program 6 to get familiar with the accelerator parameters the Gy521 provides.  
 
 The gyro values are more difficult to handle. By knowing the initial position and integrating the variations, we obtain the current position. But values are very noisy and need to be filtered.
 
 ### The MPU6050 Sensor on the Gy521 Module
-![gy521](docs/images/gy521.png?raw=true "GY521 module")
+![gy521](images/gy521.png?raw=true "GY521 module")
 The Gy521 module accepts a voltage of 3 to 5V, which is necessary to develop at 5V and then navigate to 3.7V having possibly retouched the parameters.
 The doc of the MPU6050 is scary with 120 control registers at first glance. In fact all these registers have a correct default value for our use, except one, necessary to wake up the circuit. Two other registers will be commented on later.
 The module is I2C, we must add the pull-up resistor (4k7). We can ignore the 4 additional signals.
@@ -51,7 +51,7 @@ Control theory uses beautiful mathematics and professional tools like MathLab an
 We have to program the Witty with that constant idea: keep the soft compact and fast.
 
 ### Control principles
-![regulator1](docs/images/regulator1.png?raw=true "Regulator diagram") ![regulator2](docs/images/regulator2.png?raw=true "Regulator flow")
+![regulator1](images/regulator1.png?raw=true "Regulator diagram") ![regulator2](images/regulator2.png?raw=true "Regulator flow")
 Let us suppose, as for traditional balancing robot, we want to keep the Witty vertical.  vertical. If he leans forward, he must be advanced. If the speed is proportional to the error (the angle) one has a setting P for proportional.  
 An effort, friction, the fact that Pegasus is not balanced initially, can prevent reaching the desired position; it's the static error. We add to correct a fraction of the integral of the error, therefore the sum of the differences between the desired position and the successive positions. It's component I, integration.  
 One can still worry about oscillations, and take into account the variation of the gap. It is the component D, derived.  
@@ -65,7 +65,7 @@ Kp and Ki are constants that will have to be determined experimentally, in the a
 **U(t) = Kp∗e(t) + Ki∗int(e(t))**
 
 ### Sensor Noise
-![sensornoise1](docs/images/gy521.png?raw=true "Sensor noise")
+![sensornoise1](images/gy521.png?raw=true "Sensor noise")
 To reduce the noise of the sensors, it is necessary to average and there are three simple ways to average, plus very complex techniques. The simple average sums up e.g. 4 measurements and gives a result 4 times less often, which is obviously not favorable. The sliding average measure the average of the previous 4 measures. 
 Weighted average give a weight to the stored measures, so it is possible to react faster or slower to the last measure, and get something like a low pass or high pass filter. See the web for details.  
 (our old document in French: [Moyenne.pdf](https://www.didel.com/Moyennes.pdf)).
@@ -92,7 +92,7 @@ prevV8; = v8;
 itgr += v8;```
 
 ## Test Environment and useful Functions
-![xyz1](docs/images/xyz1.png?raw=true "Sensor noise")
+![xyz1](images/xyz1.png?raw=true "Sensor noise")
 The AcZ component is horizontal and will play the main role in the algorithm.  
 The GyX value can be integrated to give the angle or directly used as a derivative of the acceleration. It is very parasitized and it is necessary to use a suitable filter.  
 Name of the main variables:
