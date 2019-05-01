@@ -10,7 +10,10 @@ One of the first robot balancing acts seems to date from 2001 with Joe, develope
 Since 2012, integrated sensors have since facilitated implementation, and the number of projects has exploded, but the descriptions are of the type "kitchen rule". Few understand what it does and why it works, if it works.  
 Adjustment problems are always tricky, and mathematics is not very useful if the data is worthless.
 
-<center><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/joe-bot1.png" width="300"><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/joe-bot2.png" width="300"></center>
+<table width="90%" align="center"><tr>
+<td width="50%"><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/joe-bot1.png" width="300"></td>
+<td><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/joe-bot2.png" width="300"></td>
+</tr></table>
 
 One can find theory with pretty formulas, there are libraries that apply these formulas in floating point. The problem is that a calculation can only give accurate results if the data is accurate and if one can act accurately.  
 Let's study in detail the components of a balancing robot and their behavior.  
@@ -100,7 +103,7 @@ itgr += v8;
 
 ## Test Environment and useful Functions
 <table><tr><td>
-![xyz1](images/xyz1.png?raw=true "XYZ")  
+<img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/xyz1.png" width="280">
 </td><td>
 The AcZ component is horizontal and will play the main role in the algorithm.  
 The GyX value can be integrated to give the angle or directly used as a derivative of the acceleration. It is very parasitized and it is necessary to use a suitable filter.  
