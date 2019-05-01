@@ -30,8 +30,8 @@ The gyro values are more difficult to handle. By knowing the initial position an
 
 ### The MPU6050 Sensor on the Gy521 Module
 <table border="0">
-<tr><td>
-<img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/gy521.png" width="240">
+<tr><td width="200">
+<img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/gy521.png" width="200">
 </td><td>
 The Gy521 module accepts a voltage of 3 to 5V, which is necessary to develop at 5V and then navigate to 3.7V having possibly retouched the parameters.
 The doc of the MPU6050 is scary with 120 control registers at first glance. In fact all these registers have a correct default value for our use, except one, necessary to wake up the circuit. Two other registers will be commented on later.
@@ -56,7 +56,7 @@ Control theory uses beautiful mathematics and professional tools like MathLab an
 We have to program the Witty with that constant idea: keep the soft compact and fast.
 
 ### Control principles
-<center><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/regulator1.png" width="300"><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/regulator2.png" width="300"></center>
+<center><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/regulator1.png" width="420"><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/regulator2.png" width="420"></center>
 
 Let us suppose, as for traditional balancing robot, we want to keep the Witty vertical.  vertical. If he leans forward, he must be advanced. If the speed is proportional to the error (the angle) one has a setting P for proportional.  
 An effort, friction, the fact that Pegasus is not balanced initially, can prevent reaching the desired position; it's the static error. We add to correct a fraction of the integral of the error, therefore the sum of the differences between the desired position and the successive positions. It's component I, integration.  
@@ -71,7 +71,7 @@ Kp and Ki are constants that will have to be determined experimentally, in the a
 **U(t) = Kp∗e(t) + Ki∗int(e(t))**
 
 ### Sensor Noise
-![sensornoise1](images/sensor-noise.png?raw=true "Sensor noise")  
+<center><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/sensor-noise.png" width="640"></center>  
 To reduce the noise of the sensors, it is necessary to average and there are three simple ways to average, plus very complex techniques. The simple average sums up e.g. 4 measurements and gives a result 4 times less often, which is obviously not favorable. The sliding average measure the average of the previous 4 measures. 
 Weighted average give a weight to the stored measures, so it is possible to react faster or slower to the last measure, and get something like a low pass or high pass filter. See the web for details.  
 (our old document in French: [Moyenne.pdf](https://www.didel.com/Moyennes.pdf)).
@@ -99,7 +99,9 @@ itgr += v8;
 ```
 
 ## Test Environment and useful Functions
+<table><tr><td>
 ![xyz1](images/xyz1.png?raw=true "XYZ")  
+</td><td>
 The AcZ component is horizontal and will play the main role in the algorithm.  
 The GyX value can be integrated to give the angle or directly used as a derivative of the acceleration. It is very parasitized and it is necessary to use a suitable filter.  
 Name of the main variables:  
@@ -109,6 +111,8 @@ int16_t corAcZ;  // mAcZ- AcZini
 int16_t dAcZ    // integrated value
 int8_t pfmL pfmR  // pfm of the 2 motorrs
 ```
+</td></tr>
+</table>
 
 We simplify the problem if we consider only AcZ. At reset, the robot is stationary in the desired position and the initial values ​​after filtering are stored.  
 The same pfm value is given for both engines. The consequence is that Pegase will slowly turn on itself. It will involve GyY, but without compass, there will always be drift.  
@@ -118,7 +122,7 @@ A P setting will check the quality of the Kp parameter signals. Then we add the 
 ### Debugging Tools
 The TerSer.h library is used instead of the Serial library. The memory space is greatly reduced and the display of insignificant zeros avoids the ziz-zag displays which prevent the evolution of the variables from being clearly visible.
 The program is in Pegase.zip.
-Valeurs affichées par G521AcXYZSerNum.ino:  
+Values displayed by G521AcXYZSerNum.ino:  
 <pre>
   AcX= 004D   AcY= 2091   AcZ= 0227 
   AcX= 0039   AcY= 2073   AcZ= 0220 
