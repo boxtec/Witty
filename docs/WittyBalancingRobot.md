@@ -34,7 +34,7 @@ The gyro values are more difficult to handle. By knowing the initial position an
 ### The MPU6050 Sensor on the Gy521 Module
 <table border="0">
 <tr><td width="200">
-<img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/gy521.png" width="200">
+![GY521](images/gy521.png?raw=true "GY521 Modul")
 </td><td>
 The Gy521 module accepts a voltage of 3 to 5V, which is necessary to develop at 5V and then navigate to 3.7V having possibly retouched the parameters.
 The doc of the MPU6050 is scary with 120 control registers at first glance. In fact all these registers have a correct default value for our use, except one, necessary to wake up the circuit. Two other registers will be commented on later.
@@ -74,7 +74,7 @@ Kp and Ki are constants that will have to be determined experimentally, in the a
 **U(t) = Kp∗e(t) + Ki∗int(e(t))**
 
 ### Sensor Noise
-<center><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/sensor-noise.png" width="640"></center>  
+![sensornoise](images/sensor-noise.png?raw=true "Sensor Noise")  
 To reduce the noise of the sensors, it is necessary to average and there are three simple ways to average, plus very complex techniques. The simple average sums up e.g. 4 measurements and gives a result 4 times less often, which is obviously not favorable. The sliding average measure the average of the previous 4 measures. 
 Weighted average give a weight to the stored measures, so it is possible to react faster or slower to the last measure, and get something like a low pass or high pass filter. See the web for details.  
 (our old document in French: [Moyenne.pdf](https://www.didel.com/Moyennes.pdf)).
