@@ -5,15 +5,15 @@
 Gyro are used on drones to guarantie the stability; a good modelization and tricky programming is required. Many balancing robots are available on the market; they rarely satisfy their users, spending time trying to adjust parameters and put the robot back up.
 The Witty is indeed more difficult to program, but it never falls down! What is interesting is motors fight against a linear inertia and a rotation inertia. Start slowly, it moves as a simple robot. Put full power, it rotates. Imagine all the trick you can play with, understanding the accelerator and gyro signals and getting the desired or a surprising behaviour.
 
-
+##### Joe Robot
 One of the first robot balancing acts seems to date from 2001 with Joe, developed at EPFL and well documented by [F.Gasser](https://www.semanticscholar.org/author/Felix-Grasser/50172806) et [A.D'Arrigo](https://www.semanticscholar.org/author/Aldo-D'Arrigo/48159685).  
 Since 2012, integrated sensors have since facilitated implementation, and the number of projects has exploded, but the descriptions are of the type "kitchen rule". Few understand what it does and why it works, if it works.  
 Adjustment problems are always tricky, and mathematics is not very useful if the data is worthless.
 
-<table width="90%" align="center"><tr>
+<p align="center"><table width="90%" align="center"><tr>
 <td width="50%"><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/joe-bot1.png" width="300"></td>
 <td><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/joe-bot2.png" width="300"></td>
-</tr></table>
+</tr></table></p>
 
 One can find theory with pretty formulas, there are libraries that apply these formulas in floating point. The problem is that a calculation can only give accurate results if the data is accurate and if one can act accurately.  
 Let's study in detail the components of a balancing robot and their behavior.  
