@@ -10,7 +10,7 @@ One of the first robot balancing acts seems to date from 2001 with Joe, develope
 Since 2012, integrated sensors have since facilitated implementation, and the number of projects has exploded, but the descriptions are of the type "kitchen rule". Few understand what it does and why it works, if it works.  
 Adjustment problems are always tricky, and mathematics is not very useful if the data is worthless.
 
-![joe1](images/joe-bot1.png?raw=true "Joe balancing Bot") ![joe2](images/joe-bot2.png?raw=true "Joe balancing Bot")  
+<img src="images/joe-bot1.png?raw=true" width="300"><img src="images/joe-bot2.png?raw=true" width="300">
 
 One can find theory with pretty formulas, there are libraries that apply these formulas in floating point. The problem is that a calculation can only give accurate results if the data is accurate and if one can act accurately.  
 Let's study in detail the components of a balancing robot and their behavior.  
@@ -132,3 +132,4 @@ The register 25 = 0x19 Sample Rate Divider has a value linked to that of the reg
 * https://positron-libre.blog/robots/pendule-inverse-vertibot.php
 * https://www.pc-control.co.uk/pid_control.htm  emphasize D (speed control)
 * https://theautomization.com/pid-control-basics-in-detail-part-1/
+
