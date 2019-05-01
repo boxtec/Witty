@@ -102,16 +102,15 @@ itgr += v8;
 ```
 
 ## Test Environment and useful Functions
+![witty](images/xyz1.png?raw=true "XYZ")  
+The AcZ component is horizontal and will play the main role in the algorithm. <br>The GyX value can be integrated to give the angle or directly used as a derivative of the acceleration. It is very parasitized and it is necessary to use a suitable filter. <br>Name of the main variables:  
 
-| | |
-| --- | --- |
-| ![witty](images/xyz1.png?raw=true "XYZ") | The AcZ component is horizontal and will play the main role in the algorithm.  The GyX value can be integrated to give the angle or directly used as a derivative of the acceleration. It is very parasitized and it is necessary to use a suitable filter.  Name of the main variables:  
 ```int16_t AcZ;   // read on the sensor
 int16_t mAcZ;  // moving average
 int16_t corAcZ;  // mAcZ- AcZini
 int16_t dAcZ    // integrated value
 int8_t pfmL pfmR  // pfm of the 2 motorrs
-```  |
+```
 
 We simplify the problem if we consider only AcZ. At reset, the robot is stationary in the desired position and the initial values ​​after filtering are stored.  
 The same pfm value is given for both engines. The consequence is that Pegase will slowly turn on itself. It will involve GyY, but without compass, there will always be drift.  
