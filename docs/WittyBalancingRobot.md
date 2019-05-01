@@ -29,10 +29,15 @@ On the Witty, some values are more interesting to know. In the position of the p
 The gyro values are more difficult to handle. By knowing the initial position and integrating the variations, we obtain the current position. But values are very noisy and need to be filtered.
 
 ### The MPU6050 Sensor on the Gy521 Module
-<img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/gy521.png" width="240">
+<table border="0">
+<tr><td>
+<img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/gy521.png" width="200" align="left">
+</td><td>
 The Gy521 module accepts a voltage of 3 to 5V, which is necessary to develop at 5V and then navigate to 3.7V having possibly retouched the parameters.
 The doc of the MPU6050 is scary with 120 control registers at first glance. In fact all these registers have a correct default value for our use, except one, necessary to wake up the circuit. Two other registers will be commented on later.
 The module is I2C, we must add the pull-up resistor (4k7). We can ignore the 4 additional signals.
+</td></tr>
+</table>
 
 ### Reading the MPU6050 sensor
 The set-up of the MPU6050 is simple: Its I2C address is 0x68 (7-bit address) and for standard operations, there is only register 0x6B to clear. 
