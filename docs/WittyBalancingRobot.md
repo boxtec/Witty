@@ -31,7 +31,7 @@ The gyro values are more difficult to handle. By knowing the initial position an
 ### The MPU6050 Sensor on the Gy521 Module
 <table border="0">
 <tr><td>
-<img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/gy521.png" width="200" align="left">
+<img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/gy521.png" width="240">
 </td><td>
 The Gy521 module accepts a voltage of 3 to 5V, which is necessary to develop at 5V and then navigate to 3.7V having possibly retouched the parameters.
 The doc of the MPU6050 is scary with 120 control registers at first glance. In fact all these registers have a correct default value for our use, except one, necessary to wake up the circuit. Two other registers will be commented on later.
@@ -83,30 +83,32 @@ To integrate, we sum simply, We integrate the difference between the desired pos
 You have to initialize correctly when you engage.
 
 #### Principles of programming
-
 ```//Variables
 int  v8, prevV8;
 inu diff, itgr
+```
 
-A chaque lecture de v8
+Anytime v8 is read:
 
-//Pour dériver
+```//Pour dériver
 diff =  v8 - prevV8;
 prevV8; = v8;
 
 //Pour intégrer
-itgr += v8;```
+itgr += v8;
+```
 
 ## Test Environment and useful Functions
 ![xyz1](images/xyz1.png?raw=true "XYZ")  
 The AcZ component is horizontal and will play the main role in the algorithm.  
 The GyX value can be integrated to give the angle or directly used as a derivative of the acceleration. It is very parasitized and it is necessary to use a suitable filter.  
-Name of the main variables:
+Name of the main variables:  
 ```int16_t AcZ;   // read on the sensor
 int16_t mAcZ;  // moving average
 int16_t corAcZ;  // mAcZ- AcZini
 int16_t dAcZ    // integrated value
-int8_t pfmL pfmR  // pfm of the 2 motorrs```
+int8_t pfmL pfmR  // pfm of the 2 motorrs
+```
 
 We simplify the problem if we consider only AcZ. At reset, the robot is stationary in the desired position and the initial values ​​after filtering are stored.  
 The same pfm value is given for both engines. The consequence is that Pegase will slowly turn on itself. It will involve GyY, but without compass, there will always be drift.  
@@ -116,13 +118,15 @@ A P setting will check the quality of the Kp parameter signals. Then we add the 
 ### Debugging Tools
 The TerSer.h library is used instead of the Serial library. The memory space is greatly reduced and the display of insignificant zeros avoids the ziz-zag displays which prevent the evolution of the variables from being clearly visible.
 The program is in Pegase.zip.
-Valeurs affichées par G521AcXYZSerNum.ino:
-```  AcX= 004D   AcY= 2091   AcZ= 0227 
+Valeurs affichées par G521AcXYZSerNum.ino:  
+<pre>
+  AcX= 004D   AcY= 2091   AcZ= 0227 
   AcX= 0039   AcY= 2073   AcZ= 0220 
   AcX= 0046   AcY= 2079   AcZ= 0225 
   AcX= 004B   AcY= 2074   AcZ= 0226 
   AcX= 0055   AcY= 2069   AcZ= 0216 
-  AcX= 0044   AcY= 2080   AcZ= 0213```
+  AcX= 0044   AcY= 2080   AcZ= 0213
+</pre>
   
 The Oled display offers the same display possibilities as the terminal, not drop-down and with additional graphics. The write time is similar, about 50 ms, which corresponds to the 50ms cycle that seems to be good to achieve.
 
