@@ -1,9 +1,6 @@
-//Witty.h 190124  voir www.didel.com/Witty.pdf 
+//Witty.h 190331  ref voir www.didel.com/WittySoft.pdf 
 //Dans PP  #include "Witty.h"  SetupWitty(); 
-//Strip RGB  - voir Apa102.h et www.didel.com/ApaWitty.pdf 
-//Gy521 - voir Gy521.h www.didel.com/Gy521Witty.pdf 
-//Simple teled control  
-//Push et Led  - voir GetPush.h et https://www.didel.com/diduino/Poussoir.pdf
+
 #define bLed 1 // PORTC
 #define bPush 0  // actif à zero
 #define PushOn (!(PINC&(1<<bPush)))  // pull-up int 
@@ -58,17 +55,13 @@ void Delus (uint16_t dm) {  // 182-152
      for (uint16_t i=0; i<dm; i++) {nop;nop;nop;}
 }
 
-void Cli(byte nn) {   // do not use
-  for (byte i=0; i<2*nn; i++) { LedToggle; DelMs(300);}
-}
-void Cligno(byte nn,byte dd) {
+void Cligno(byte nn,int dd) {
   for (byte i=0; i<2*nn; i++) { LedToggle, DelMs(dd);}
 }
-void CliErr (byte ct,byte dd) {
+void CliErr (byte ct,int dd, int ww) {
   while(1) {
      Cligno (ct,dd);
-     DelMs (1000);
+     DelMs (ww);
   }
 }
-
 

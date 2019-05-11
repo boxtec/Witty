@@ -1,11 +1,11 @@
- // WittyDemo2.ino 190419  4434b 112v  !! 2 copies ajouté effet lum 
+ // WittyDemo2.ino 190506  4580b 113v  distributed on w01-w10 
 // welcome with Rainbow and fast blink push n times
-// 1 push red several move on-off and back to menu
-// 2 pushes green same with pfm speed changes
-// 3 control blue with most TV IR 1pulse stop, 2,3,4,5 move
+// 1 push  several move on-off and back to menu
+// 2 pushes  same with pfm speed changes
+// 3 control  with most TV IR 1pulse stop, 2,3,4,5 move
 // 4 demonstrate log dim
-// 5 compte
-// 6 test accelero Gy521  reset to restart demo
+// 5 count in binary
+// 6 test accelerometer Gy521 value in terminal 4 orientations on leds
 
  #include "Witty.h"
  #include "GetPush.h"
@@ -27,11 +27,12 @@ void setup() {
    SetupTerSer();
    SetupI2Ctwi();
    SetupGy521();
-  Cli(2); DelMs(500); 
+  Cligno(2,200); 
 }
 
-// Une fonction démo à mettre dans un .h sépare avec par exemple un générateur de caractères
-// On veut tester un compteur binaire 1 allumé 0 sombre
+// Example of a not simple function binary counter 1 bright 0 dark but visible
+// That function has no reason to be included in the Apa102.h file
+// Show a byte in any color.
 void ShowByte (uint8_t nn,uint8_t rr,uint8_t gg,uint8_t bb) {
   ApaHead();
   for (byte i=0; i<Npix; i++) {
@@ -44,70 +45,65 @@ void ShowByte (uint8_t nn,uint8_t rr,uint8_t gg,uint8_t bb) {
 
 byte cPush; 
 byte cnt5=0;  // test 5
-      #define D DelMs(1000)
-      #define D2 DelMs(2000)
+ #define D02 DelMs(200)
+ #define D05 DelMs(500)
+ #define D1 DelMs(1000)
+ #define D2 DelMs(2000)
 void loop() {
   cli();  // if Demo3 before
   ApaRainbow();  
   cPush= GetPush(); 
   switch (cPush) {
+  D2; 
     case 1: // Demo1 Move
-      byte cmo;
-      cmo=2;
-      while(cmo--){  // on répète 2 fois 
-        ApaLogRed(1);          
-        AvD; AvG; D;     // Avance
-        StopG; StopD; D; 
-         ApaLogGreen(4);     
-        AvD;   D;         //TourneG
-        StopG; StopD; D;
-         ApaLogBlue(4); 
-        AvG;  D;         // TourneD
-        StopG; StopD; D; 
-         ApaLogWhite(4); 
-        RecD; RecG; D;  // Recule
-        StopG; StopD; D; 
-         ApaLogRed(15); 
-        AvD; AvG; D; RecD; RecG; D; 
-        BlockG; BlockD; D;  
-      }
+      ApaLogRed(4);
+        AvD; AvG; D05;     // Avance
+        StopG; StopD; D05;    
+        AvD;   D05;         //TourneG
+        StopG; StopD; D05;
+        AvG;  D05;         // TourneD
+        StopG; StopD; D05; 
+        RecD; RecG; D05;  // Recule
+        StopG; StopD; D05; 
+        AvD; AvG; D05; RecD; RecG; D05; 
+        BlockG; BlockD; D05;  
+        ApaLogGreen(4); AvG; RecD; D1;
+        ApaLogBlue(4); AvD; RecG; D1;
+         BlockG; BlockD; D05;
+        ApaLogWhite(4); AvD; AvG; D05; RecD; RecG; D05;
+        StopG; StopD; ApaLogRed(4);D02;ApaLogGreen(4);D02;
       break;
     case 2: // Demo2 Pfm Move
       ApaLogBlue(10);
         SetupInter2();
-          ApaLogGreen(1);        
-        pfmL=1; pfmR=1; D2;
-          ApaLogGreen(2);
-        pfmL=2; pfmR=2; D2;  
-          ApaLogGreen(4);
+        pfmL=2; pfmR=2;  D2;D2;
+        pfmL=-2; pfmR=-2; D2;D2;
         pfmL=4; pfmR=4; D2;
-          ApaLogGreen(8);
-        pfmL=8; pfmR=8; D;  
-          ApaLogGreen(10);
-        pfmL=20; pfmR=20; DelMs(500);
-         ApaClear();
-        pfmL=0; pfmR=0; D;
-         ApaLogRed(10);
-        pfmL=-20; pfmR=-20; DelMs(500); 
-        pfmL=0; pfmR=0; D;
-         ApaLogRed(15);
-        pfmL=70; pfmR=70; DelMs(300);
-        pfmL=0; pfmR=0; D;
-         ApaLogYellow(15);        
-        pfmL=-70; pfmR=-70; DelMs(300);
-        pfmL=0; pfmR=0; D;   
+        pfmL=-4; pfmR=-4; D2;  
+        pfmL=16; pfmR=16; D1;
+        pfmL=0; pfmR=0; D2;
+        pfmL=-16; pfmR=-16; D1; 
+        pfmL=0; pfmR=0; D2;
+        pfmL=70; pfmR=70; D05;
+        pfmL=0; pfmR=0; D2;
+        pfmL=-70; pfmR=-70; D05;
+        pfmL=0; pfmR=0; D1;   
       ApaLogBlue(2); 
-  #define Dac DelMs(20) 
-  #define MaxVit 75  // 15x5 a cause int logique leds         
-  for (pfmR=0; pfmR<MaxVit; pfmR++) {pfmL=pfmR; ApaLogGreen(pfmR/5);Dac;}
-  for (pfmR=MaxVit; pfmR>=0; pfmR--) {pfmL=pfmR; ApaLogBlue(pfmR/5);Dac;}
-        pfmL=0; pfmR=0; ApaLogWhite(5); D;
-  for (pfmR=0; pfmR>-MaxVit; pfmR--) {pfmL=pfmR; ApaLogBlue(-pfmR/5);Dac;}
-  for (pfmR=-MaxVit; pfmR<0; pfmR++) {pfmL=pfmR; ApaLogGreen(-pfmR/5);Dac;}
-        pfmL=0; pfmR=0; ApaLogWhite(5); D;
-      DelMs(1000);
-      cli();
-      break;    
+  #define Dac DelMs(10) 
+  for(volatile byte i; i<3; i++) {
+    D2; 
+    #define MaxVit 80 
+    for (pfmR=0; pfmR<MaxVit; pfmR++) {pfmL=pfmR; ApaLogGreen(pfmL/5); Dac;} 
+      ApaLogRed(2); 
+    for (pfmR=MaxVit; pfmR>0; pfmR--) {pfmL=pfmR; ApaLogGreen(pfmL/5); Dac;}
+    for (pfmR=0; pfmR>-MaxVit; pfmR--) {pfmL=pfmR; ApaLogRed(-pfmL/5); Dac;}
+      ApaLogGreen(2); 
+    for (pfmR=-MaxVit; pfmR<0; pfmR++) {pfmL=pfmR; ApaLogRed(-pfmL/5); Dac;}
+        pfmL=0; pfmR=0; D1;
+  }
+     cli();
+     break; 
+            
     case 3: // Demo IRM control
       ApaLogWhite(10);
  byte nPress;
@@ -115,10 +111,10 @@ void loop() {
         nPress= Compte();
         switch (nPress) {
           case 1:   // stop
-            ApaLogGreen(5);
+            ApaLogRed(5);
             FreeG; FreeD; break;
           case 2:   // avance
-            ApaLogRed(5);
+            ApaLogGreen(5);
             AvG; AvD; break;
           case 3:   // tourneG
             ApaLogBlue(5);
@@ -133,11 +129,13 @@ void loop() {
             ShowByte (0x55,5,5,5); 
             FreeG; FreeD; break;
          }  // end switch
-      }  // end while
-    case 5: // RGB   // new numbering
+      }  // end while    
+      // reset to quit
+      
+    case 5: // RGB   // ApaLog requires interrupt 
     sei();
-       for (byte i=0;i<16;i++) {ApaLogRed(i); DelMs(100);}
-       for (byte i=16;i>0;i--) {ApaLogRed(i-1); DelMs(100);}
+       for (volatile byte i=0;i<16;i++) {ApaLogRed(i); DelMs(100);}
+       for (volatile byte i=16;i>0;i--) {ApaLogRed(i-1); DelMs(100);}
        ApaLogGreen(1);DelMs(1000);ApaLogBlue(1);DelMs(1000);ApaLogRed(1);DelMs(1000);
        ApaLogGreen(15);DelMs(1000);ApaLogBlue(15);DelMs(1000);ApaLogRed(15);DelMs(1000);  // max intensity
        // add your own tricks

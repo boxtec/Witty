@@ -1,6 +1,6 @@
 //#include "I2Ctwi.h"  TWI et fonctions composées
 // inside PP #include "I2Ctwi.h"  SetupI2Ctwi();
-//#include <Arduino.h>  // pas nécessaire?
+#include <Arduino.h>  // pas nécessaire?
 // aadd defini dans pp avec #define aadd valeur adresse 8 bits sélect
 // ? changera avec paramètre explicite? ou nom G521Twi
 byte status;
