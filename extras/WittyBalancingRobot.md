@@ -11,8 +11,8 @@ Since 2012, integrated sensors have since facilitated implementation, and the nu
 Adjustment problems are always tricky, and mathematics is not very useful if the data is worthless.
 
 <p align="center"><table width="90%" align="center"><tr>
-<td width="50%"><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/joe-bot1.png" width="300"></td>
-<td><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/joe-bot2.png" width="300"></td>
+<td width="50%"><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/extras/images/joe-bot1.png" width="300"></td>
+<td><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/extras/images/joe-bot2.png" width="300"></td>
 </tr></table></p>
 
 One can find theory with pretty formulas, there are libraries that apply these formulas in floating point. The problem is that a calculation can only give accurate results if the data is accurate and if one can act accurately.  
@@ -59,7 +59,7 @@ Control theory uses beautiful mathematics and professional tools like MathLab an
 We have to program the Witty with that constant idea: keep the soft compact and fast.
 
 ### Control principles
-<center><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/regulator1.png" width="420"><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/docs/images/regulator2.png" width="420"></center>
+<center><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/extras/images/regulator1.png" width="420"><img src="https://git.boxtec.ch/didel/Witty/raw/branch/master/extras/images/regulator2.png" width="420"></center>
 
 Let us suppose, as for traditional balancing robot, we want to keep the Witty vertical.  vertical. If he leans forward, he must be advanced. If the speed is proportional to the error (the angle) one has a setting P for proportional.  
 An effort, friction, the fact that Pegasus is not balanced initially, can prevent reaching the desired position; it's the static error. We add to correct a fraction of the integral of the error, therefore the sum of the differences between the desired position and the successive positions. It's component I, integration.  
