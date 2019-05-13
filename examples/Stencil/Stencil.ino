@@ -5,9 +5,9 @@
 //  #include "Telec.h"    //need Witty.h
 //  #include "Apa102.h"   //need SetupApa102(); 
 //  #include "Inter2.h"   //need SetupInter2(); application dependant
-//  #include "Pfm.h"      //need //need //need //need SetupPfm();
-//  #include "TerSer.h"   //need //need //need SetupTerSer();
-//  #include "I2Ctwi.h"   //need //need SetupI2Ctwi();
+//  #include "Pfm.h"      //need SetupPfm();
+//  #include "TerSer.h"   //need SetupTerSer();
+//  #include "I2Ctwi.h"   //need SetupI2Ctwi();
 //  #include "Gy521.h"    //need SetupGy521(); and I2Ctwi.h
 
 #include "Witty.h" 
