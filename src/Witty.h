@@ -39,8 +39,8 @@
 
 void  SetupWitty() {
   DDRD  = 0b11111000;  // rien sur pd3?
-  DDRC  = 0 ;
-  PORTC = 0b000001; // pullup pous 
+  DDRC  = 0b000010; // Led
+  PORTC = 0b000001; // pullup Push 
   DDRB= 0x03;  // PB0 1 sur connecteur pour Apa102
 }
 
