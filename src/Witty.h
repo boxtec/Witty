@@ -37,13 +37,6 @@
 #define LedOff bitClear (PORTC,bLed)
 #define LedToggle (PORTC^=(1<<bLed))  
 
-void  SetupWitty() {
-  DDRD  = 0b11111000;  // rien sur pd3?
-  DDRC  = 0b000010; // Led
-  PORTC = 0b000001; // pullup Push 
-  DDRB= 0x03;  // PB0 1 sur connecteur pour Apa102
-}
-
 #define nop asm ("nop")
 void DelMs (uint16_t dm) {   //172-152
    for (uint16_t i=0; i<dm; i++) {
@@ -65,3 +58,11 @@ void CliErr (byte ct,int dd, int ww) {
   }
 }
 
+
+void  SetupWitty() {
+  DDRD  = 0b11111000;  // rien sur pd3?
+  DDRC  = 0b000010; // Led
+  PORTC = 0b000001; // pullup Push 
+  DDRB= 0x03;  // PB0 1 for Apa102
+  LedOn; DelMs(100); LedOff;
+}
